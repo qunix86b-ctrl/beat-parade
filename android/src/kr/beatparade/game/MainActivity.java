@@ -29,8 +29,8 @@ public final class MainActivity extends Activity {
    @Override public boolean shouldOverrideUrlLoading(WebView v,WebResourceRequest r){return !HOST.equals(r.getUrl().getHost());}
    @Override public WebResourceResponse shouldInterceptRequest(WebView v,WebResourceRequest r){
     Uri uri=r.getUrl();String path=uri.getPath();
-    if(!"https".equals(uri.getScheme())||!HOST.equals(uri.getHost())||path==null||!path.matches("/[A-Za-z0-9._-]+"))return empty();
-    String file=path.substring(1);String mime=file.endsWith(".html")?"text/html":file.endsWith(".js")?"application/javascript":file.endsWith(".css")?"text/css":"text/plain";
+    if(!"https".equals(uri.getScheme())||!HOST.equals(uri.getHost())||path==null||!path.matches("/(?:art/)?[A-Za-z0-9_-]+\\.[A-Za-z0-9]+"))return empty();
+    String file=path.substring(1);String mime=file.endsWith(".html")?"text/html":file.endsWith(".js")?"application/javascript":file.endsWith(".css")?"text/css":file.endsWith(".png")?"image/png":"text/plain";
     try{return new WebResourceResponse(mime,"UTF-8",200,"OK",Collections.singletonMap("Cache-Control","no-cache"),getAssets().open(file));}catch(Exception e){return empty();}
    }
   });
