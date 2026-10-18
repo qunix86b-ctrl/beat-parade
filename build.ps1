@@ -26,8 +26,8 @@ if (!(Test-Path tools/local-test-key.jks)) {
  & "$javaRoot/bin/keytool.exe" -genkeypair -keystore tools/local-test-key.jks -storepass android -keypass android -alias beatparade -keyalg RSA -keysize 2048 -validity 10000 -dname 'CN=Beat Parade Local Build,O=Local Development,C=KR'
  CheckExit
 }
-& "$bt/apksigner.bat" sign --ks tools/local-test-key.jks --ks-key-alias beatparade --ks-pass pass:android --key-pass pass:android --out dist/BeatParade-1.0.apk build/aligned.apk
+& "$bt/apksigner.bat" sign --ks tools/local-test-key.jks --ks-key-alias beatparade --ks-pass pass:android --key-pass pass:android --out dist/BeatParade-1.1.apk build/aligned.apk
 CheckExit
-& "$bt/apksigner.bat" verify --verbose dist/BeatParade-1.0.apk
+& "$bt/apksigner.bat" verify --verbose dist/BeatParade-1.1.apk
 CheckExit
-Get-FileHash dist/BeatParade-1.0.apk -Algorithm SHA256
+Get-FileHash dist/BeatParade-1.1.apk -Algorithm SHA256
