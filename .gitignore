@@ -1,0 +1,6 @@
+tools/
+build/
+test-results/
+*.jks
+*.idsig
+dist/
